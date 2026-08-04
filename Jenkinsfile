@@ -3,6 +3,9 @@ pipeline{
     tools{
         maven "maven-3.9"
     }
+    environment{
+        Build_CMD = "clean package"
+    }
     stages{
         stage("SCM checkout"){
             steps{
@@ -11,7 +14,7 @@ pipeline{
         }
         stage("Build"){
             steps{
-                sh 'mvn clean package'
+                sh "mvn ${Build_CMD}"
             }
         }
         stage("SonarQube Analysis"){
@@ -28,6 +31,13 @@ pipeline{
         stage('Archive Artifact') {
             steps {
                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            }
+        }
+        stage("Environments"){
+            steps{
+                echo "Build = ${env.BUILD_NUMBER}"
+                echo "Workspace = ${env.WORKSPACE}"
+                echo "Job Name = ${env.JOB_NAME}"
             }
         }
 
