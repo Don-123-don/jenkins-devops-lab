@@ -2,9 +2,9 @@ pipeline{
     agent any
     parameters{
         string{
-            name : "APP_VERSION",
-            defaultValue : '1.0.0',
-            description : 'Application Version'
+            name: "APP_VERSION",
+            defaultValue: '1.0.0',
+            description: 'Application Version'
         }
         choice{
             name : 'ENVIRONMENT',
