@@ -1,5 +1,22 @@
 pipeline{
     agent any
+    parameters{
+        string{
+            name : "APP_VERSION",
+            defaultValue : '1.0.0',
+            description : 'Application Version'
+        }
+        choice{
+            name : 'ENVIRONMENT',
+            choices : ['Dev','QAT','PRD'],
+            description : 'Select Environment'
+        }
+        booleanParam{
+            name : 'DEPLOY',
+            defaultValue : false,
+            description : 'Deploy after build?'
+        }
+    }
     tools{
         maven "maven-3.9"
     }
