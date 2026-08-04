@@ -18,7 +18,7 @@ pipeline{
             steps{
                 withSonarQubeEnv('SonarQube'){
                     sh '''
-                    mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+                    mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
                     -Dsonar.projectKey=jenkins-demo \
                     -Dsonar.projectName=jenkins-demo
                     '''
